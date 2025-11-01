@@ -11,9 +11,7 @@ def resource_path(p):
 
 pytesseract.pytesseract.tesseract_cmd = resource_path('tesseract.exe')
 #pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'  # 根据需要更新此路径
-# pytesseract.pytesseract.tesseract_cmd = os.getcwd() + '\\Tesseract-OCR\\tesseract.exe'  # 根据需要更新此路径
-# testdata_dir_config = f'--tessdata-dir "{os.getcwd()}\\Tesseract-OCR\\tessdata"'
-# 尝试导入 tkinterdnd2，如果失败则提供替代方案
+
 try:
     from tkinterdnd2 import DND_FILES, TkinterDnD
     TKDND_AVAILABLE = True
@@ -288,3 +286,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
