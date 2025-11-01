@@ -6,4 +6,5 @@ opencv+pytesseract实现OCR，并打包为可执行程序
 
 
 打包命令：
-pyinstaller -F -w .\OCR.py --additional-hooks-dir hooks   --add-binary "Tesseract-OCR\tesseract.exe;."   --add-data   "Tesseract-OCR\tessdata;tessdata"
+pyinstaller -F -w .\OCR.py --additional-hooks-dir hooks   --add-binary "C:\Program Files\Tesseract-OCR\*;."
+   --add-data   "C:\\Program Files\\Tesseract-OCR\tessdata;tessdata"
