@@ -4,7 +4,13 @@ import tkinter as tk
 from tkinter import filedialog, scrolledtext
 import os,sys
 
-pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'  # 根据需要更新此路径
+def resource_path(p):
+    # 若程序是打包后的exe，sys._MEIPASS指向运行时的临时根目录；否则用当前脚本目录
+    base = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base, p)  # 拼接资源路径
+
+pytesseract.pytesseract.tesseract_cmd = resource_path('tesseract.exe')
+#pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'  # 根据需要更新此路径
 # pytesseract.pytesseract.tesseract_cmd = os.getcwd() + '\\Tesseract-OCR\\tesseract.exe'  # 根据需要更新此路径
 # testdata_dir_config = f'--tessdata-dir "{os.getcwd()}\\Tesseract-OCR\\tessdata"'
 # 尝试导入 tkinterdnd2，如果失败则提供替代方案
@@ -15,28 +21,7 @@ except ImportError:
     TKDND_AVAILABLE = False
     print("警告: tkinterdnd2 未安装，拖拽功能将不可用")
     print("请安装: pip install tkinterdnd2")
-
-import os, sys
-
-def resource_path(p):
-    base = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
-    return os.path.join(base,p)
-
-# ① 让 Tcl 能找到 tkdnd（兼容 win64 / win32 / windows 三种目录）
-def _wire_tkdnd_env():
-    for sub in (
-        "tkinterdnd2/tkdnd/win64",
-        # "tkinterdnd2/tkdnd/win32",
-        # "tkinterdnd2/tkdnd/windows",
-        "tkdnd",
-    ):
-        p = resource_path(sub)
-        if os.path.exists(p):
-            os.environ.setdefault("TKDND_LIBRARY", p)
-            os.environ.setdefault("TCLLIBPATH", p)
-            break
-_wire_tkdnd_env()
-
+    
 class OCRApp:
     def __init__(self, root):
         self.root = root
@@ -301,4 +286,5 @@ def main():
             except EOFError: pass
 
 if __name__ == "__main__":
+
     main()
