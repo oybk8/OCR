@@ -10,8 +10,7 @@ def resource_path(p):
     return os.path.join(base, p)  # 拼接资源路径
 
 pytesseract.pytesseract.tesseract_cmd = resource_path('tesseract.exe')
-#pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'  # 根据需要更新此路径
-
+#pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'  # 本地运行可用
 try:
     from tkinterdnd2 import DND_FILES, TkinterDnD
     TKDND_AVAILABLE = True
@@ -286,4 +285,5 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
